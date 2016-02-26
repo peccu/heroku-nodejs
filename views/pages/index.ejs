@@ -3,6 +3,14 @@
 <head>
   <link rel="manifest" href="/manifest.json">
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+  <% include ../partials/nav.ejs %>
+
+  <a href="#" id="subscribe-link"></a>
   <script>
     function subscribe() {
     OneSignal.push(["registerForPushNotifications"]);
@@ -34,16 +42,6 @@
       });
     });
   </script>
-  <% include ../partials/header.ejs %>
-</head>
-
-<body>
-
-  <% include ../partials/nav.ejs %>
-
-  <a href="#" id="subscribe-link"></a>
-  <script>
-    </script>
   
 <div class="jumbotron text-center">
   <div class="container">
