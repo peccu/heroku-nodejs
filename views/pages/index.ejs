@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="manifest" href="/manifest.json">
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
+  <script>
+    function subscribe() {
+    OneSignal.push(["registerForPushNotifications"]);
+    event.preventDefault();
+    }
+
+    var OneSignal = OneSignal || [];
+    OneSignal.push(["init", {
+    appId: "3ad99cf4-7072-4778-a0b8-5cf937c991ed",
+    safari_web_id: "web.onesignal.auto.18f55e14-9585-4855-a0ee-ea6515e10e22",
+    autoRegister: false,
+    notifyButton: {
+      enable: true
+    }
+    }]);
+    OneSignal.push(function() {
+      // If we're on an unsupported browser, do nothing
+      if (!OneSignal.isPushNotificationsSupported()) {
+      return;
+      }
+      OneSignal.isPushNotificationsEnabled(function (isEnabled) {
+        if (isEnabled) {
+          // The user is subscribed to notifications
+          // Don't show anything
+        } else {
+          document.getElementById("subscribe-link").textContent = "Subscribe to Notifications";
+          document.getElementById("subscribe-link").addEventListener('click', subscribe);
+        }
+      });
+    });
+  </script>
   <% include ../partials/header.ejs %>
 </head>
 
@@ -8,6 +41,10 @@
 
   <% include ../partials/nav.ejs %>
 
+  <a href="#" id="subscribe-link"></a>
+  <script>
+    </script>
+  
 <div class="jumbotron text-center">
   <div class="container">
     <a href="/" class="lang-logo">
